@@ -3,7 +3,8 @@ var gurkortext = document.getElementById("gurkortext")
 var gurka_rot = 0
 var gurkor = 0
 var gpc = 1
-var upgradeprice = 50
+var upgradeprice = 12
+var autoclickers = 0
 
 var skins = []
 var ownedskin = null
@@ -26,9 +27,10 @@ class Skin {
 }
 
 var deafultskin = new Skin("Deafult",0,"gurka.png")
-var uhohskin = new Skin("Uh Oh Stinky",900,"uhohstinky.png")
-var donaldskin = new Skin("Donald Trump",2000,"donaldface.png")
-var kunggurkaskin = new Skin("Kung Gurka",5000,"kunggurka.png")
+var colorinverteddeafultskin = new Skin("Color Inverted Deafult",250,"invertedgurka.png")
+var uhohskin = new Skin("Uh Oh Stinky",500,"uhohstinky.png")
+var donaldskin = new Skin("Donald Trump",1000,"donaldface.png")
+var kunggurkaskin = new Skin("Kung Gurka",3000,"kunggurka.png")
 
 ownedskin = deafultskin
 
@@ -44,11 +46,12 @@ function UpdateGurka() {
         gurka.src = ownedskin.path
     }
     gurkortext.innerHTML = "Gurkor: " + gurkor.toString()
-    document.getElementById("upgradepricetxt").innerHTML = "GPC: " + gpc.toString()
-    document.getElementById("upgradebtn").innerHTML = "Upgrade gpc for " + upgradeprice.toString() + " Gurkor"
+    document.getElementById("upgradepricetxt").innerHTML = "AutoClickers: " + autoclickers.toString()
+    document.getElementById("upgradebtn").innerHTML = "Buy 1 AutoClicker for " + upgradeprice.toString() + " Gurkor"
 }
 
 function Save() {
+    localStorage.setItem("autoc",autoclickers)
     localStorage.setItem("upgradeprice",upgradeprice)
     localStorage.setItem("skin",ownedskin.name)
     localStorage.setItem("gpc",gpc)
@@ -59,6 +62,7 @@ function Load() {
     gurkor = parseInt(localStorage.getItem("gurkor"))
     gpc = parseInt(localStorage.getItem("gpc"))
     upgradeprice = parseInt(localStorage.getItem("upgradeprice"))
+    autoclickers = parseInt(localStorage.getItem("autoc"))
     for (i = 0; i < skins.length; i++) {
         if (skins[i].name == localStorage.getItem("skin")) {
             ownedskin = skins[i]
@@ -74,9 +78,8 @@ function Buy(skin) {
 function Upgrade() {
     if (gurkor >= upgradeprice) {
         gurkor -= upgradeprice
-        gpc += 1
-        upgradeprice += 50
-        document.getElementById("upgradebtn").innerHTML = "Upgrade gpc for " + upgradeprice.toString() + " Gurkor"
+        autoclickers += 1
+        upgradeprice += 12
         UpdateGurka()
     }
 }
@@ -84,13 +87,17 @@ function Upgrade() {
 UpdateGurka()
 
 var felwayunlocked = false
-function CheckSecrets() {
+function Tick() {
+    gurkor += autoclickers
+    gurka_rot += autoclickers
+    UpdateGurka()
     if (gurka_rot < 0) {
         if (felwayunlocked == false) {
             felwayunlocked = true
+            UpdateGurka()
             alert("WRONG WAY!")
         }
     }
 }
 
-setInterval(CheckSecrets,1000)
+setInterval(Tick,1000)
