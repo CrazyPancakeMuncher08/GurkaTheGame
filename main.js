@@ -119,6 +119,8 @@ function Rebirth() {
         rank = 1
         gpc += 1
         doubled += 2
+        autoclickers = 0
+        upgradeprice = 12
         gurka_rot_destination = 0
         UpdateGurka()
     }
