@@ -160,7 +160,13 @@ function Tick() {
     if (rank == 5) {
         ranktext.innerHTML = "Rank: Expert"
     }
-    gurkor += parseInt(autoclickers * doubled)
+    
+    if (doubled <= 0) {
+        gurkor += autoclickers
+    } else {
+        gurkor += autoclickers * doubled
+    }
+    
     if (ownedskin != wrongwayskin) {
         gurka_rot_destination += autoclickers
     } else {
