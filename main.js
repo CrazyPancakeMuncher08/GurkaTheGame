@@ -1,6 +1,8 @@
 var gurka = document.getElementById("gurka")
 var gurkortext = document.getElementById("gurkortext")
 var ranktext = document.getElementById("ranktext")
+var nameinput = document.getElementById("nameinput")
+var nametext = document.getElementById("nametext")
 var gurka_rot = 0
 var gurka_rot_destination = 0
 var gurkor = 0
@@ -9,6 +11,7 @@ var upgradeprice = 12
 var autoclickers = 0
 var rank = 1
 var doubled = 0
+var name = "Gurka Factory"
 
 var skins = []
 var ownedskin = null
@@ -49,7 +52,12 @@ var thanosskin = new Skin("Thanos",8000,"thanos.png",300,300)
 var coinskin = new Skin("Coin",5000,"coin.png",400,300)
 var appleskin = new Skin("Apple",2000,"apple.png",300,300)
 var pancakeskin = new Skin("Pancake",20000,"pancake.png",300,300)
-var guccigurkaskin = new Skin("Gucci Gurka",100000,"guccigurka.png",300,300)
+var guccigurkaskin = new Skin("Gucci Gurka",10000,"guccigurka.png",300,300)
+var laptopskin = new Skin("Laptop",3000,"laptop.png",400,300)
+var coronaskin = new Skin("Corona",70000,"corona.png",300,300)
+var rblxnoobskin = new Skin("Roblox Noob",90000,"rblxnoob.png",300,300)
+var cakeskin = new Skin("Cake",500000,"cake.png",300,300)
+var grassskin = new Skin("Grass",300000,"grass.png",300,300)
 var wrongwayskin = new Skin("Wrong Way","0","wrongwaygurka.png",300,300)
 
 ownedskin = deafultskin
@@ -72,9 +80,11 @@ function UpdateGurka() {
     gurkortext.innerHTML = "Gurkor: " + gurkor.toString()
     document.getElementById("upgradepricetxt").innerHTML = "AutoClickers: " + autoclickers.toString()
     document.getElementById("upgradebtn").innerHTML = "Buy 1 AutoClicker for " + upgradeprice.toString() + " Gurkor"
+    nametext.innerHTML = name
 }
 
 function Save() {
+    localStorage.setItem("name",name)
     localStorage.setItem("doubled",doubled)
     localStorage.setItem("rank",rank)
     localStorage.setItem("autoc",autoclickers)
@@ -85,6 +95,7 @@ function Save() {
 }
 
 function Load() {
+    name = localStorage.getItem("name")
     doubled = parseInt(localStorage.getItem("doubled"))
     rank = parseInt(localStorage.getItem("rank"))
     gurkor = parseInt(localStorage.getItem("gurkor"))
@@ -96,6 +107,7 @@ function Load() {
             ownedskin = skins[i]
         }
     }
+    nameinput.value = name
     UpdateGurka()
 }
 
@@ -122,6 +134,7 @@ function Rebirth() {
         autoclickers = 0
         upgradeprice = 12
         gurka_rot_destination = 0
+        ownedskin = deafultskin
         UpdateGurka()
     }
 }
@@ -130,6 +143,10 @@ UpdateGurka()
 
 var felwayunlocked = false
 function Tick() {
+    if (nameinput.value != "") {
+        name = nameinput.value
+        UpdateGurka()
+    }
     if (gurkor >= 0 && gurkor <= 1000) {
         rank = 1
     }
