@@ -4,6 +4,7 @@
         <title>Gurka The Game</title>
     </head>
     <body>
+        <h2 id="nametext">Loading...</h2>
         <img id="gurka" src="gurka.png" width="300" height="300" onclick="Click()" style="transform:rotate(0deg)">
         <h3 id="gurkortext">Gurkor: 0</h3>
         <h3 id="ranktext">Rank: Loading...</h3>
@@ -11,8 +12,12 @@
         <button onclick="Load()">Load</button>
         <button onclick="Rebirth()">Rebirth</button>
         <h1>Settings</h1>
-        <h4>Autosave</h4>
+        <h4>Factory Name:</h4>
+        <input type="text" placeholder="Type your gurka factory name." id="nameinput">
+        <h4>Autosave:</h4>
         <input type="checkbox" id="autosbox">
+        <h4>Trello:</h4>
+        <button onclick="window.open('https://trello.com/b/HVKqSnGD/gurka-the-game')">Click me to open trello page</button>
         <h1>Skin Shop</h1>
         <button onclick="Buy(0)">Buy Deafult Skin for free</button>
         <button onclick="Buy(1)">Buy Color Inverted Deafult Skin for 250 Gurkor</button>
@@ -24,6 +29,11 @@
         <button onclick="Buy(7)">Buy Apple Skin for 2000 Gurkor</button>
         <button onclick="Buy(8)">Buy Pancake Skin for 20000 Gurkor</button>
         <button onclick="Buy(9)">Buy Gucci Gurka Skin for 100000 Gurkor</button>
+        <button onclick="Buy(10)">Buy Laptop Skin for 3000 Gurkor</button>
+        <button onclick="Buy(11)">Buy Corona Skin for 70000 Gurkor</button>
+        <button onclick="Buy(12)">Buy Roblox Noob Skin for 90000 Gurkor</button>
+        <button onclick="Buy(13)">Buy Cake Skin for 500000 Gurkor</button>
+        <button onclick="Buy(14)">Buy Minecraft Grass Block Skin for 300000 Gurkor</button>
         <h1>Upgrades Shop</h1>
         <button onclick="Upgrade()" id="upgradebtn">Buy 1 AutoClicker for 50 Gurkor</button>
         <h4 id="upgradepricetxt"></h4>
