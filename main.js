@@ -143,6 +143,9 @@ UpdateGurka()
 
 var felwayunlocked = false
 function Tick() {
+    if (document.getElementById("autobbox").checked == true) {
+        Upgrade()
+    }
     if (nameinput.value != "") {
         name = nameinput.value
         UpdateGurka()
