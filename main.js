@@ -3,6 +3,7 @@ var gurkortext = document.getElementById("gurkortext")
 var ranktext = document.getElementById("ranktext")
 var nameinput = document.getElementById("nameinput")
 var nametext = document.getElementById("nametext")
+var bginput = document.getElementById("backgroundinput")
 var gurka_rot = 0
 var gurka_rot_destination = 0
 var gurkor = 0
@@ -12,6 +13,7 @@ var autoclickers = 0
 var rank = 1
 var doubled = 0
 var name = "Gurka Factory"
+var background = ""
 
 var skins = []
 var ownedskin = null
@@ -64,6 +66,7 @@ var croissantskin = new Skin("Croissant",100000000,"croissant.png",300,300)
 var milkskin = new Skin("Milk",300000,"milk.png",300,300)
 var fortniteskin = new Skin("Fortnite",50000,"fortnite.png",300,300)
 var thicksteveskin = new Skin("Thick Steve",9000000000000,"thicksteve.png",400,300)
+var nuggetskin = new Skin("Nugget",900000000000000,"nugget.png",300,300)
 var wrongwayskin = new Skin("Wrong Way",0,"wrongwaygurka.png",300,300)
 var gskin = new Skin("G",0,"g.png",300,300)
 
@@ -90,9 +93,11 @@ function UpdateGurka() {
     document.getElementById("upgradepricetxt").innerHTML = "AutoClickers: " + autoclickers.toString()
     document.getElementById("upgradebtn").innerHTML = "Buy 1 AutoClicker for " + upgradeprice.toString() + " Gurkor"
     nametext.innerHTML = name
+    document.body.style.backgroundImage = "url('" + background +  "')"
 }
 
 function Save() {
+    localStorage.setItem("bg",background)
     localStorage.setItem("name",name)
     localStorage.setItem("doubled",doubled)
     localStorage.setItem("rank",rank)
@@ -104,6 +109,7 @@ function Save() {
 }
 
 function Load() {
+    background = localStorage.getItem("bg")
     name = localStorage.getItem("name")
     doubled = parseInt(localStorage.getItem("doubled"))
     rank = parseInt(localStorage.getItem("rank"))
@@ -117,6 +123,7 @@ function Load() {
         }
     }
     nameinput.value = name
+    bginput.value = background
     UpdateGurka()
 }
 
@@ -141,7 +148,7 @@ function Upgrade10() {
 }
 
 function Rebirth() {
-    if (rank == 5) {
+    if (rank == 7) {
         gurkor = 0
         rank = 1
         gpc += 1
@@ -159,6 +166,11 @@ UpdateGurka()
 var felwayunlocked = false
 var gunlocked = false
 function Tick() {
+    if (bginput.value != "") {
+        background = bginput.value
+        UpdateGurka()
+        console.log(background)
+    }
     if (document.getElementById("autobbox").checked == true) {
         Upgrade()
     }
@@ -178,8 +190,14 @@ function Tick() {
     if (gurkor > 100000 && gurkor <= 1000000) {
         rank = 4
     }
-    if (gurkor > 1000000 && gurkor <= 99999999999999999999999999) {
+    if (gurkor > 1000000 && gurkor <= 100000000) {
         rank = 5
+    }
+    if (gurkor > 100000000 && gurkor <= 100000000000) {
+        rank = 6
+    }
+    if (gurkor > 100000000000 && gurkor <= 9999999999999999999999999999999999999999999999) {
+        rank = 7
     }
     if (rank == 1) {
         ranktext.innerHTML = "Rank: Noob"
@@ -195,6 +213,12 @@ function Tick() {
     }
     if (rank == 5) {
         ranktext.innerHTML = "Rank: Expert"
+    }
+    if (rank == 6) {
+        ranktext.innerHTML = "Rank: Titan"
+    }
+    if (rank == 7) {
+        ranktext.innerHTML = "Rank: Hacker"
     }
     
     if (doubled <= 0) {
