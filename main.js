@@ -58,7 +58,14 @@ var coronaskin = new Skin("Corona",70000,"corona.png",300,300)
 var rblxnoobskin = new Skin("Roblox Noob",90000,"rblxnoob.png",300,300)
 var cakeskin = new Skin("Cake",500000,"cake.png",300,300)
 var grassskin = new Skin("Grass",300000,"grass.png",300,300)
-var wrongwayskin = new Skin("Wrong Way","0","wrongwaygurka.png",300,300)
+var bananaskin = new Skin("Banana",8000000,"banana.png",300,300)
+var meatballskin = new Skin("Meatball",90000000,"meatball.png",300,300)
+var croissantskin = new Skin("Croissant",100000000,"croissant.png",300,300)
+var milkskin = new Skin("Milk",300000,"milk.png",300,300)
+var fortniteskin = new Skin("Fortnite",50000,"fortnite.png",300,300)
+var thicksteveskin = new Skin("Thick Steve",9000000000000,"thicksteve.png",400,300)
+var wrongwayskin = new Skin("Wrong Way",0,"wrongwaygurka.png",300,300)
+var gskin = new Skin("G",0,"g.png",300,300)
 
 ownedskin = deafultskin
 
@@ -76,6 +83,8 @@ function UpdateGurka() {
     gurka.style = "transform:rotate(" + gurka_rot.toString() + "deg)"
     if (ownedskin != null) {
         gurka.src = ownedskin.path
+        gurka.width = ownedskin.width
+        gurka.height = ownedskin.height
     }
     gurkortext.innerHTML = "Gurkor: " + gurkor.toString()
     document.getElementById("upgradepricetxt").innerHTML = "AutoClickers: " + autoclickers.toString()
@@ -125,6 +134,12 @@ function Upgrade() {
     }
 }
 
+function Upgrade10() {
+    for (var i = 0; i < 10; i++) {
+        Upgrade()
+    }
+}
+
 function Rebirth() {
     if (rank == 5) {
         gurkor = 0
@@ -142,6 +157,7 @@ function Rebirth() {
 UpdateGurka()
 
 var felwayunlocked = false
+var gunlocked = false
 function Tick() {
     if (document.getElementById("autobbox").checked == true) {
         Upgrade()
@@ -209,12 +225,30 @@ function ZeroTick() {
 }
 
 function Autosaving() {
-    console.log(document.getElementById("autosbox").checked)
     if (document.getElementById("autosbox").checked == true) {
         Save()
     }
 }
 
+function FiveTick() {
+    if (ownedskin == gskin) {
+        gurkor += 5
+    }
+}
+
+function logKey(e) {
+    console.log(e.keyCode)
+    if (e.keyCode == 71) {
+        if (gunlocked == false) {
+            gunlocked = true
+            alert("You are now an epic gurka gamer because you pressed g on your keyboard! Press ok to get an epic skin that gives you 5 gurkor every 10 seconds.")
+            ownedskin = gskin
+        }
+    }
+}
+
+document.addEventListener('keydown', logKey);
 setInterval(Autosaving,60000)
+setInterval(FiveTick,10000)
 setInterval(Tick,1000)
 setInterval(ZeroTick,1)
