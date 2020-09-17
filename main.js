@@ -289,13 +289,13 @@ function Tick() {
     if (gurkor > 100000 && gurkor <= 1000000) {
         rank = 4
     }
-    if (gurkor > 1000000 && gurkor <= 100000000) {
+    if (gurkor > 100000 && gurkor <= 100000000) {
         rank = 5
     }
-    if (gurkor > 100000000 && gurkor <= 100000000000) {
+    if (gurkor > 150000 && gurkor <= 100000000000) {
         rank = 6
     }
-    if (gurkor > 100000000000 && gurkor <= 9999999999999999999999999999999999999999999999) {
+    if (gurkor > 1000000 && gurkor <= 9999999999999999999999999999999999999999999999) {
         rank = 7
     }
     if (rank == 1) {
