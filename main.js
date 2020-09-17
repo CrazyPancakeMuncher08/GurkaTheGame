@@ -277,22 +277,22 @@ function Tick() {
         name = nameinput.value
         UpdateGurka()
     }
-    if (gurkor >= 0 && gurkor <= 1000) {
+    if (gurkor >= 0 && gurkor <= 700) {
         rank = 1
     }
-    if (gurkor > 1000 && gurkor <= 10000) {
+    if (gurkor > 700 && gurkor <= 1000) {
         rank = 2
     }
-    if (gurkor > 10000 && gurkor <= 100000) {
+    if (gurkor > 1000 && gurkor <= 10000) {
         rank = 3
     }
-    if (gurkor > 100000 && gurkor <= 1000000) {
+    if (gurkor > 10000 && gurkor <= 100000) {
         rank = 4
     }
-    if (gurkor > 100000 && gurkor <= 100000000) {
+    if (gurkor > 100000 && gurkor <= 150000) {
         rank = 5
     }
-    if (gurkor > 150000 && gurkor <= 100000000000) {
+    if (gurkor > 150000 && gurkor <= 1000000) {
         rank = 6
     }
     if (gurkor > 1000000 && gurkor <= 9999999999999999999999999999999999999999999999) {
