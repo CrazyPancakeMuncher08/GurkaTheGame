@@ -89,7 +89,7 @@
                         var saveObject = {
                             name: nameinput,
                             highscore: gurkorinput.toString(),
-                            rebirths: document.getElementById("ranktext").innerHTML
+                            rebirths: rankstring
                         }
                         firebase.database().ref("saved_highscore").set(saveObject)
                         alert("Highscore saved!")
