@@ -5,6 +5,7 @@
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
         <title>Gurka The Game</title>
         <link rel="shortcut icon" href="gurka.png">
+        
     </head>
     <body>
         <h2 id="nametext">Loading...</h2>
@@ -58,6 +59,67 @@
         <h1>File Saving</h1>
         <button onclick="SaveFile()">Save to file</button>
         <button onclick="LoadFile()">Load file</button>
-        <input type="file" name="inputfile" id="inputfile" accept=".save"> 
+        <input type="file" name="inputfile" id="inputfile" accept=".save">
+        <h1>Highscore</h1>
+        <h4 id="highscoretext">Loading...</h4>
+        <button onclick="LoadHighscore()">Refresh</button>
+        <button onclick="SaveHighscore(prompt('Type your name or nickname'),gurkor)">Validate</button>
+        <script src="https://www.gstatic.com/firebasejs/7.21.0/firebase-app.js"></script>
+        <script src="https://www.gstatic.com/firebasejs/7.21.0/firebase-auth.js"></script>
+        <script src="https://www.gstatic.com/firebasejs/7.21.0/firebase-database.js"></script>
+        <script>
+          var firebaseConfig = {
+            apiKey: "AIzaSyBmnT4KaojmVZ7cxUa48GoHCwPm1rW0X7I",
+            authDomain: "gurkathegame.firebaseapp.com",
+            databaseURL: "https://gurkathegame.firebaseio.com",
+            projectId: "gurkathegame",
+            storageBucket: "gurkathegame.appspot.com",
+            messagingSenderId: "1026178212329",
+            appId: "1:1026178212329:web:b6609e969695a85aea2b78"
+          };
+          firebase.initializeApp(firebaseConfig);
+          function SaveHighscore(nameinput,gurkorinput) {
+            if (nameinput != "") {
+                var username = ""
+                var highscore = 0
+                var here_doubled = 0
+                return firebase.database().ref("saved_highscore").once('value').then(function(snapshot) {
+                    username = (snapshot.val() && snapshot.val().name) || 'Anonymous';
+                    highscore = (snapshot.val() && snapshot.val().highscore) || 'Anonymous';
+                    if (gurkor > highscore) {
+                        if (doubled <= 0) {
+                            here_doubled = 0
+                        } else {
+                            here_doubled = doubled - 1
+                        }
+                        var saveObject = {
+                            name: nameinput,
+                            highscore: gurkorinput.toString(),
+                            rebirths: here_doubled.toString()
+                        }
+                        firebase.database().ref("saved_highscore").set(saveObject)
+                        alert("Highscore saved!")
+                        LoadHighscore()
+                    } else {
+                        alert("You dont have enough gurkor!")
+                    }
+                });
+            } else {
+                alert("You did not type your name/nickname! No data has been saved!")
+            }
+        }
+        function LoadHighscore() {
+            var username = ""
+            var highscore = 0
+            var reb = 0
+            return firebase.database().ref("saved_highscore").once('value').then(function(snapshot) {
+                username = (snapshot.val() && snapshot.val().name) || 'Not found!';
+                highscore = (snapshot.val() && snapshot.val().highscore) || 'Not found!';
+                reb = (snapshot.val() && snapshot.val().rebirths) || 'Not found!';
+                document.getElementById("highscoretext").innerHTML = "Name: " + username + ", Highscore: " + parseInt(highscore) + " Gurkor, Rebirths: " + parseInt(reb)
+            });
+        }
+        LoadHighscore()
+        </script>
     </body>
 </html>
