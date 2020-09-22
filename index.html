@@ -82,20 +82,14 @@
             if (nameinput != "") {
                 var username = ""
                 var highscore = 0
-                var here_doubled = 0
                 return firebase.database().ref("saved_highscore").once('value').then(function(snapshot) {
                     username = (snapshot.val() && snapshot.val().name) || 'Anonymous';
                     highscore = (snapshot.val() && snapshot.val().highscore) || 'Anonymous';
                     if (gurkor > highscore) {
-                        if (doubled <= 0) {
-                            here_doubled = 0
-                        } else {
-                            here_doubled = doubled - 1
-                        }
                         var saveObject = {
                             name: nameinput,
                             highscore: gurkorinput.toString(),
-                            rebirths: here_doubled.toString()
+                            rebirths: document.getElementById("ranktext").innerHTML
                         }
                         firebase.database().ref("saved_highscore").set(saveObject)
                         alert("Highscore saved!")
@@ -116,7 +110,7 @@
                 username = (snapshot.val() && snapshot.val().name) || 'Not found!';
                 highscore = (snapshot.val() && snapshot.val().highscore) || 'Not found!';
                 reb = (snapshot.val() && snapshot.val().rebirths) || 'Not found!';
-                document.getElementById("highscoretext").innerHTML = "Name: " + username + ", Highscore: " + parseInt(highscore) + " Gurkor, Rebirths: " + parseInt(reb)
+                document.getElementById("highscoretext").innerHTML = "Name: " + username + ", Highscore: " + parseInt(highscore) + " Gurkor, Rank: " + reb
             });
         }
         LoadHighscore()
