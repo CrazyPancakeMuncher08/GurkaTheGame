@@ -16,6 +16,7 @@ var menabled = false
 var upgradeprice = 12
 var autoclickers = 0
 var rank = 1
+var rankstring = ""
 var doubled = 0
 var name = "Gurka Factory"
 var background = ""
@@ -300,24 +301,31 @@ function Tick() {
     }
     if (rank == 1) {
         ranktext.innerHTML = "Rank: Noob"
+        rankstring = "Noob"
     }
     if (rank == 2) {
         ranktext.innerHTML = "Rank: Not good"
+        rankstring = "Not good"
     }
     if (rank == 3) {
         ranktext.innerHTML = "Rank: Good"
+        rankstring = "Good"
     }
     if (rank == 4) {
         ranktext.innerHTML = "Rank: Very good"
+        rankstring = "Very good"
     }
     if (rank == 5) {
         ranktext.innerHTML = "Rank: Expert"
+        rankstring = "Expert"
     }
     if (rank == 6) {
         ranktext.innerHTML = "Rank: Titan"
+        rankstring = "Titan"
     }
     if (rank == 7) {
         ranktext.innerHTML = "Rank: Hacker"
+        rankstring = "Hacker"
     }
     
     if (doubled <= 0) {
