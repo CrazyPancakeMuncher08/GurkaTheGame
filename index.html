@@ -86,28 +86,51 @@
             appId: "1:1026178212329:web:b6609e969695a85aea2b78"
           };
           firebase.initializeApp(firebaseConfig);
+          function GetIP() {
+            abcd = null
+            const API_URL = "https://www.cloudflare.com/cdn-cgi/trace";
+            function onDataRecieve() {
+                const ipRegex = /[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}/                           
+                const IP = xhttp.responseText.match(ipRegex)[0];
+                abcd = IP
+                return abcd
+            }
+            const xhttp = new XMLHttpRequest();
+            xhttp.onreadystatechange = onDataRecieve;
+            xhttp.open("GET", API_URL, true);
+            xhttp.send();
+          }
+          var highscore_system_disabled = true
           function SaveHighscore(nameinput,gurkorinput) {
-            if (nameinput != "") {
-                var username = ""
-                var highscore = 0
-                return firebase.database().ref("saved_highscore").once('value').then(function(snapshot) {
-                    username = (snapshot.val() && snapshot.val().name) || 'Anonymous';
-                    highscore = (snapshot.val() && snapshot.val().highscore) || 'Anonymous';
-                    if (gurkor > highscore) {
-                        var saveObject = {
-                            name: nameinput,
-                            highscore: gurkorinput.toString(),
-                            rebirths: rankstring
+            if (highscore_system_disabled == false) {
+                if (nameinput != "") {
+                    var username = ""
+                    var highscore = 0
+                    var foundip = null
+                    $.getJSON('http://gd.geobytes.com/GetCityDetails?callback=?', function(data) {
+                        foundip = data.host
+                    });
+                    return firebase.database().ref("saved_highscore").once('value').then(function(snapshot) {
+                        username = (snapshot.val() && snapshot.val().name) || 'Anonymous';
+                        highscore = (snapshot.val() && snapshot.val().highscore) || 'Anonymous';
+                        if (gurkor > highscore) {
+                            var saveObject = {
+                                name: nameinput,
+                                highscore: gurkorinput.toString(),
+                                rebirths: rankstring,
+                            }
+                            firebase.database().ref("saved_highscore").set(saveObject)
+                            alert("Highscore saved!")
+                            LoadHighscore()
+                        } else {
+                            alert("You dont have enough gurkor!")
                         }
-                        firebase.database().ref("saved_highscore").set(saveObject)
-                        alert("Highscore saved!")
-                        LoadHighscore()
-                    } else {
-                        alert("You dont have enough gurkor!")
-                    }
-                });
+                    });
+                } else {
+                    alert("You did not type your name/nickname! No data has been saved!")
+                }
             } else {
-                alert("You did not type your name/nickname! No data has been saved!")
+                alert("The highscore system has been disabled due to abuse and it's never coming again.")
             }
         }
         function LoadHighscore() {
