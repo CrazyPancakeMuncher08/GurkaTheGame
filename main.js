@@ -1,5 +1,6 @@
 var gurka = document.getElementById("gurka")
 var gurkortext = document.getElementById("gurkortext")
+var tokenstext = document.getElementById("tokenstext")
 var ranktext = document.getElementById("ranktext")
 var nameinput = document.getElementById("nameinput")
 var nametext = document.getElementById("nametext")
@@ -20,6 +21,7 @@ var rankstring = ""
 var doubled = 0
 var name = "Gurka Factory"
 var background = ""
+var tokens = 0.00
 
 var skins = []
 var ownedskin = null
@@ -94,15 +96,16 @@ var cakeskin = new Skin("Cake",500000,"cake.png",300,300)
 var grassskin = new Skin("Grass",300000,"grass.png",300,300)
 var bananaskin = new Skin("Banana",8000000,"banana.png",300,300)
 var meatballskin = new Skin("Meatball",90000000,"meatball.png",300,300)
-var croissantskin = new Skin("Croissant",100000000,"croissant.png",300,300)
+var croissantskin = new Skin("Croissant",10000,"croissant.png",300,300)
 var milkskin = new Skin("Milk",300000,"milk.png",300,300)
 var fortniteskin = new Skin("Fortnite",50000,"fortnite.png",300,300)
-var thicksteveskin = new Skin("Thick Steve",9000000000000,"thicksteve.png",400,300)
+var thicksteveskin = new Skin("Thick Steve",18000"thicksteve.png",400,300)
 var nuggetskin = new Skin("Nugget",900000000000000,"nugget.png",300,300)
-var turtleskin = new Skin("Turtle",90000000000,"turtle.png",400,300)
-var solskin = new Skin("Sol",9000000,"sol.png",300,300)
+var turtleskin = new Skin("Turtle",9000,"turtle.png",400,300)
+var solskin = new Skin("Sol",7000,"sol.png",300,300)
 var wrongwayskin = new Skin("Wrong Way",0,"wrongwaygurka.png",300,300)
 var gskin = new Skin("G",0,"g.png",300,300)
+var eyesskin = new Skin("Eyes",300,"g.png",300,300)
 
 ownedskin = deafultskin
 
@@ -124,12 +127,22 @@ function ResetAutocn() {
     autocn = false
 }
 
+function News() {
+}
+
+function ConvertToken() {
+    if (gurkor >= 100) {
+        gurkor -= 100
+        tokens += 0.01
+    }
+}
+
 function Click() {
     DetectAutoclicker()
     code = 2041
     lastinputValue = gurkor
     if (autocn == false) {
-        gurkor += gpc
+        gurkor += gpc * 2
         if (ownedskin != wrongwayskin) {
             gurka_rot_destination += gpc
         } else {
@@ -149,6 +162,7 @@ function UpdateGurka() {
         gurka.height = ownedskin.height
     }
     gurkortext.innerHTML = "Gurkor: " + gurkor.toString()
+    tokenstext.innerHTML = "Tokens: " + tokens.toFixed(2).toString()
     document.getElementById("upgradepricetxt").innerHTML = "AutoClickers: " + autoclickers.toString()
     document.getElementById("upgradebtn").innerHTML = "Buy 1 AutoClicker for " + upgradeprice.toString() + " Gurkor"
     nametext.innerHTML = name
@@ -158,6 +172,7 @@ function UpdateGurka() {
 function Save() {
     code = 2041
     localStorage.setItem("bg",background)
+    localStorage.setItem("tokens",tokens)
     localStorage.setItem("name",name)
     localStorage.setItem("doubled",doubled)
     localStorage.setItem("rank",rank)
@@ -202,6 +217,7 @@ function LoadFile() {
 
 function Load() {
     code = 2041
+    tokens = parseFloat(localStorage.getItem("tokens"))
     background = localStorage.getItem("bg")
     name = localStorage.getItem("name")
     doubled = parseInt(localStorage.getItem("doubled"))
@@ -369,6 +385,8 @@ function FiveTick() {
 
 function logKey(e) {
     console.log(e.keyCode)
+    if (e.keyCode == 77) {
+    }
 }
 
 function ZeroZeroTick() {
