@@ -6,10 +6,10 @@
         <title>Gurka The Game</title>
         <link rel="shortcut icon" href="gurka.png">
         
-        <meta name="viewport" content="user-scalable=no, width=device-width" />
+        <meta name="viewport" content="user-scalable=no, width=device-width, initial-scale=1.0, maximum-scale=1.0"/>
         <meta name="apple-mobile-web-app-capable" content="yes" />
-        
-        <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+
+        <meta name="apple-mobile-web-app-status-bar-style" content="black" />
         <link rel="apple-touch-icon" href="gurka.png"/>
 
         <link rel="apple-touch-startup-image" href="gurka.png" />
@@ -52,13 +52,13 @@
         <button onclick="Buy(14)">Buy Minecraft Grass Block Skin for 300000 Gurkor</button>
         <button onclick="Buy(15)">Buy Banana Skin for 8000000 Gurkor</button>
         <button onclick="Buy(16)">Buy Meatball Skin for 90000000 Gurkor</button>
-        <button onclick="Buy(17)">Buy Croissant Skin for 100000000 Gurkor</button>
+        <button onclick="Buy(17)">Buy Croissant Skin for 10000 Gurkor</button>
         <button onclick="Buy(18)">Buy Milk Skin for 300000 Gurkor</button>
         <button onclick="Buy(19)">Buy Fortnite Skin for 50000 Gurkor</button>
-        <button onclick="Buy(20)">Buy Thick Steve Skin for 9000000000000 Gurkor</button>
+        <button onclick="Buy(20)">Buy Thick Steve Skin for 18000 Gurkor</button>
         <button onclick="Buy(21)">Buy Chicken Nugget Skin for 900000000000000 Gurkor</button>
-        <button onclick="Buy(22)">Buy Turtle Skin for 90000000000 Gurkor</button>
-        <button onclick="Buy(23)">Buy Sol Skin for 9000000 Gurkor</button>
+        <button onclick="Buy(22)">Buy Turtle Skin for 9000 Gurkor</button>
+        <button onclick="Buy(23)">Buy Sol Skin for 7000 Gurkor</button>
         <h1>Upgrades Shop</h1>
         <button onclick="Upgrade10()" id="upgrade10btn">Buy 10 AutoClickers</button>
         <button onclick="Upgrade()" id="upgradebtn">Buy 1 AutoClicker for 50 Gurkor</button>
@@ -72,15 +72,12 @@
         <h4 id="highscoretext">Loading...</h4>
         <button onclick="LoadHighscore()">Refresh</button>
         <button onclick="SaveHighscore(prompt('Type your name or nickname'),gurkor)">Validate</button>
+        <h1>Ad</h1>
+        <img src="nothing.jpg", width="300" height="300"></img>
+        <h4>There is currently no advertisement.</h4>
         <script src="https://www.gstatic.com/firebasejs/7.21.0/firebase-app.js"></script>
         <script src="https://www.gstatic.com/firebasejs/7.21.0/firebase-auth.js"></script>
         <script src="https://www.gstatic.com/firebasejs/7.21.0/firebase-database.js"></script>
-        <script>
-         function BlockMove(event) {
-          // Tell Safari not to move the window.
-          event.preventDefault() ;
-         }
-        </script>
         <script>
           var firebaseConfig = {
             apiKey: "AIzaSyBmnT4KaojmVZ7cxUa48GoHCwPm1rW0X7I",
@@ -106,7 +103,7 @@
             xhttp.open("GET", API_URL, true);
             xhttp.send();
           }
-          var highscore_system_disabled = false
+          var highscore_system_disabled = true
           function SaveHighscore(nameinput,gurkorinput) {
             if (highscore_system_disabled == false) {
                 if (nameinput != "") {
