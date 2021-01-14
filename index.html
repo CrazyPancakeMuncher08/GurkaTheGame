@@ -2,6 +2,7 @@
 <html>
     <head>
         <script src="download.js"></script>
+        <script src="chancejs.js"></script>
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
         <title>Gurka The Game</title>
         <link rel="shortcut icon" href="gurka.png">
@@ -18,7 +19,8 @@
     <body>
         <h2 id="nametext">Loading...</h2>
         <img id="gurka" src="gurka.png" width="300" height="300" onclick="Click()" style="transform:rotate(0deg)">
-        <h3 id="gurkortext">Gurkor: 0</h3>
+        <h3 id="gurkortext">Gurkor: Loading...</h3>
+        <h3 id="tokenstext">Tokens: Loading...</h3>
         <h3 id="ranktext">Rank: Loading...</h3>
         <button onclick="Save()">Save</button>
         <button onclick="Load()">Load</button>
@@ -63,7 +65,10 @@
         <button onclick="Upgrade10()" id="upgrade10btn">Buy 10 AutoClickers</button>
         <button onclick="Upgrade()" id="upgradebtn">Buy 1 AutoClicker for 50 Gurkor</button>
         <h4 id="upgradepricetxt"></h4>
-        <script src="main.js"></script>
+        <h1>Token Converter</h1>
+        <button onclick="ConvertToken()">Convert 100 Gurkor to 0.01 Tokens</button>
+        <h1>Tokens Shop</h1>
+        <h4>Coming soon!</h4>
         <h1>File Saving</h1>
         <button onclick="SaveFile()">Save to file</button>
         <button onclick="LoadFile()">Load file</button>
@@ -75,6 +80,7 @@
         <h1>Ad</h1>
         <img src="nothing.jpg", width="300" height="300"></img>
         <h4>There is currently no advertisement. Send an email to "williamjackson08456@gmail.com" if you would like to have your own image here.</h4>
+        <script src="main.js"></script>
         <script src="https://www.gstatic.com/firebasejs/7.21.0/firebase-app.js"></script>
         <script src="https://www.gstatic.com/firebasejs/7.21.0/firebase-auth.js"></script>
         <script src="https://www.gstatic.com/firebasejs/7.21.0/firebase-database.js"></script>
@@ -103,7 +109,7 @@
             xhttp.open("GET", API_URL, true);
             xhttp.send();
           }
-          var highscore_system_disabled = true
+          var highscore_system_disabled = false
           function SaveHighscore(nameinput,gurkorinput) {
             if (highscore_system_disabled == false) {
                 if (nameinput != "") {
