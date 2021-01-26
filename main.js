@@ -142,7 +142,7 @@ function Click() {
     code = 2041
     lastinputValue = gurkor
     if (autocn == false) {
-        gurkor += gpc * 2
+        gurkor += gpc
         if (ownedskin != wrongwayskin) {
             gurka_rot_destination += gpc
         } else {
